@@ -47,7 +47,6 @@ dashboard/
 ## ⚙️ Getting Started
 
 ### 1️⃣ Clone the repository
-```bash
 git clone https://github.com/xhesikamula/CybersecurityLearningDashboard.git
 cd CybersecurityLearningDashboard/dashboard
 
