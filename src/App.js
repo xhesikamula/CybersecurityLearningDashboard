@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
-import placeholderImage from "./assets/placeholder.png"; 
+import placeholderImage from "./assets/placeholder.png";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -42,48 +42,66 @@ function App() {
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-white dark:bg-gray-800 transition">
-        {/* Header only for title + dark mode */}
+      <div className="min-h-screen bg-[#DAF1DE] dark:bg-[#051F20] transition-colors duration-500">
+        {}
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        {/* Main layout: content left, sidebar right */}
+        {}
         <div className="flex flex-col lg:flex-row p-6 gap-6">
-          {/* Left: Learning Resources */}
+          {}
           <div className="flex-1">
-            <h2 className="text-xl font-semibold mb-4">Learning Resources</h2>
+            <h2 className="text-xl font-bold mb-6 text-[#051F20] dark:text-[#DAF1DE] tracking-wide">
+              Resource Library
+            </h2>
 
             {loading ? (
               <div className="flex justify-center items-center">
                 <img
                   src={placeholderImage}
                   alt="Loading resources"
-                  className="w-64 h-64 object-contain"
+                  className="w-64 h-64 object-contain opacity-70"
                 />
               </div>
             ) : filteredResources.length === 0 ? (
-              <p>No resources found.</p>
+              <p className="text-[#051F20] dark:text-[#DAF1DE]">
+                No resources found.
+              </p>
             ) : (
-              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredResources.map((res) => (
                   <li
                     key={res.id}
-                    className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow transform hover:scale-105 transition duration-300"
+                    className="p-5 bg-white dark:bg-[#0A2E2F] rounded-2xl 
+                               shadow-md hover:shadow-xl hover:scale-[1.03] 
+                               transition-all duration-300 border border-[#051F20]/10 dark:border-[#DAF1DE]/10"
                   >
-                    <h3 className="text-lg font-bold">{res.title}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <h3 className="text-lg font-bold text-[#051F20] dark:text-[#DAF1DE]">
+                      {res.title}
+                    </h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
                       {res.description}
                     </p>
-                    <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
-                      {res.category}
-                    </span>
+                   <span
+  className={`inline-block mt-3 px-3 py-1 text-xs font-semibold rounded-full
+    ${res.category === "Web Security" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
+    ${res.category === "Networking" ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200" : ""}
+    ${res.category === "CTFs" ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200" : ""}
+    ${res.category === "Cryptography" ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200" : ""}
+    ${res.category === "General" ? "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200" : ""}
+    ${res.category === "Defensive Security" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
+  `}
+>
+  {res.category}
+</span>
+
                     <br />
                     <a
                       href={res.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
+                      className="inline-block mt-4 text-sm font-medium text-[#051F20] dark:text-[#DAF1DE] hover:underline"
                     >
-                      Visit Resource
+                      Visit Resource →
                     </a>
                   </li>
                 ))}
@@ -91,43 +109,66 @@ function App() {
             )}
           </div>
 
-          {/* Right: Search + Filter Sidebar */}
-          <div className="w-full lg:w-64 flex-shrink-0 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg shadow-md">
-            <h3 className="font-semibold mb-2 text-gray-700 dark:text-gray-200">
+          {}
+          <div className="w-full lg:w-64 flex-shrink-0 bg-white dark:bg-[#0A2E2F] 
+                          p-5 rounded-xl shadow-md border border-[#051F20]/10 dark:border-[#DAF1DE]/10">
+            <h3 className="font-semibold mb-3 text-[#051F20] dark:text-[#DAF1DE]">
               Filter Resources
             </h3>
 
-            {/* Search */}
+            {}
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="⌕ Search resources..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-3 py-2 mb-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="w-full px-3 py-2 mb-4 rounded-md border border-[#051F20]/20 
+                         dark:border-[#DAF1DE]/20 bg-white dark:bg-[#0F3838] 
+                         text-[#051F20] dark:text-[#DAF1DE] focus:ring-2 
+                         focus:ring-[#051F20] dark:focus:ring-[#DAF1DE]"
             />
 
-            {/* Category Filter */}
-            <select
-              value={filterCategory}
-              onChange={(e) => setFilterCategory(e.target.value)}
-              className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-            >
-              <option value="">All Categories</option>
-              <option value="Web Security">Web Security</option>
-              <option value="Networking">Networking</option>
-              <option value="CTFs">CTFs</option>
-              <option value="Cryptography">Cryptography</option>
-              <option value="General">General</option>
-              <option value="Defensive Security">Defensive Security</option>
-            </select>
+            {}
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Web Security",
+                "Networking",
+                "CTFs",
+                "Cryptography",
+                "General",
+                "Defensive Security",
+              ].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() =>
+                    setFilterCategory(filterCategory === cat ? "" : cat)
+                  }
+                  className={`px-3 py-1 rounded-full text-sm font-medium border 
+                    transition-colors duration-200
+                    ${
+                      filterCategory === cat
+                        ? "bg-[#051F20] text-white dark:bg-[#DAF1DE] dark:text-[#051F20]"
+                        : "bg-gray-100 text-gray-700 dark:bg-[#0F3838] dark:text-[#DAF1DE]/70"
+                    }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Clear button*/}
+            {filterCategory && (
+              <button
+                onClick={() => setFilterCategory("")}
+                className="mt-4 text-xs text-red-500 hover:underline"
+              >
+                Clear Filter
+              </button>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 export default App;
-
-
-/*App.js edhe Header.js i kom ndreqqqq*/

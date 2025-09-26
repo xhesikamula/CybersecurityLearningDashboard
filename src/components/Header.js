@@ -2,18 +2,22 @@ import React from "react";
 
 export default function Header({ darkMode, setDarkMode }) {
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-gray-100 dark:bg-gray-900 shadow-md">
-      {/* Dashboard Title */}
-      <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+    <header className="sticky top-0 z-50 flex items-center justify-between 
+                       px-6 py-4 bg-[#DAF1DE] dark:bg-[#051F20] shadow-md 
+                       border-b border-[#051F20]/10 dark:border-[#DAF1DE]/10">
+      {}
+      <h1 className="text-2xl font-extrabold text-[#051F20] dark:text-[#DAF1DE] tracking-wide">
         Cybersecurity Learning Dashboard
       </h1>
 
-      {/* Dark Mode Toggle */}
+      {/* Dark-Light Mode */}
       <button
         onClick={() => setDarkMode(!darkMode)}
-        className="px-2 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+        className="px-3 py-2 rounded-full bg-[#051F20] dark:bg-[#DAF1DE] 
+                   text-[#DAF1DE] dark:text-[#051F20] font-bold shadow 
+                   hover:scale-105 transition"
       >
-        {darkMode ? "☀️" : "🌙"}
+        {darkMode ? "☀︎" : "🌙"}
       </button>
     </header>
   );
