@@ -47,6 +47,7 @@ dashboard/
 
 ### 1️⃣ Clone the repository
 git clone https://github.com/xhesikamula/CybersecurityLearningDashboard.git
+
 cd CybersecurityLearningDashboard/dashboard
 
 ### 2️⃣ Install dependencies
